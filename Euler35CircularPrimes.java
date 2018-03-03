@@ -45,7 +45,7 @@ public class Euler35CircularPrimes {
 		public static boolean isCircular(int n)
 		{
 			boolean result = true;
-			int length = Integer.toString(n).length();
+			int length = (int)Math.log10((long)n) + 1;
 			for (int i = 0; i < length - 1; i++)
 			{
 				int temp = rotate(n, length);
