@@ -3,30 +3,6 @@ import java.text.NumberFormat;
 
 public class Euler35CircularPrimes {
 
-	public static void main(String[] args) {
-		
-		long start = System.currentTimeMillis();
-		
-		//Iterates to one million and counts circular primes on the way
-		int n = 11;
-		int total = 4;
-		while (n < 1000000)
-		{
-			if (isCircular(n))
-			{
-				total++;
-			}
-			n = getNextPrime(n);
-		}
-		
-		System.out.println("Total of circular primes below one million: " + total);
-		
-		//For testing efficiency
-		long end = System.currentTimeMillis();
-		NumberFormat formatter = new DecimalFormat("#0.00000");
-		System.out.print("\nExecution time is " + formatter.format((end - start) / 1000d) + " seconds.");
-	}
-	
 		//Determines if integer n is prime. 
 		public static boolean isPrime(int n)
 		{
@@ -82,4 +58,24 @@ public class Euler35CircularPrimes {
 			}
 			return result;
 		}
+	
+		public static void main(String[] args) {
+		long start = System.currentTimeMillis();
+		//Iterates to one million and counts circular primes on the way
+		int n = 11;
+		int total = 4;
+		while (n < 1000000)
+		{
+			if (isCircular(n))
+			{
+				total++;
+			}
+			n = getNextPrime(n);
+		}
+		System.out.println("Total of circular primes below one million: " + total);
+		//For testing efficiency
+		long end = System.currentTimeMillis();
+		NumberFormat formatter = new DecimalFormat("#0.00000");
+		System.out.print("\nExecution time is " + formatter.format((end - start) / 1000d) + " seconds.");
+	}
 }
