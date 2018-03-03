@@ -7,10 +7,7 @@ public class Euler35CircularPrimes {
 		
 		long start = System.currentTimeMillis();
 		
-		//Iterates through integers less than one million and uses the methods below
-		//to determine if each integer is a circular prime. It begins at 2-digit numbers
-		//and counts the 4 single-digit circular primes beforehand.
-		
+		//Iterates to one million and counts circular primes on the way
 		int n = 11;
 		int total = 4;
 		while (n < 1000000)
@@ -24,6 +21,7 @@ public class Euler35CircularPrimes {
 		
 		System.out.println("Total of circular primes below one million: " + total);
 		
+		//For testing efficiency
 		long end = System.currentTimeMillis();
 		NumberFormat formatter = new DecimalFormat("#0.00000");
 		System.out.print("\nExecution time is " + formatter.format((end - start) / 1000d) + " seconds.");
