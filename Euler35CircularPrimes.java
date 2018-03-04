@@ -10,10 +10,10 @@ public class Euler35CircularPrimes {
 			    return false;
 			if (n == 2 || n == 3) 
 			    return true;
-			if (n % 2 == 0 || n % 3 == 0) 
+			if (n % 2 == 0 || n % 3 == 0 || n % 5 == 0 || n % 7 == 0) 
 			    return false;
-			long sqrtN = (long)Math.sqrt(n) + 1;
-			for (long i = 6L; i <= sqrtN; i += 6) 
+			int sqrtN = (int)Math.sqrt(n) + 1;
+			for (int i = 6; i <= sqrtN; i += 6) 
 			{
 			    if (n % (i - 1) == 0 || n % (i + 1) == 0) 
 			        return false;
@@ -45,7 +45,9 @@ public class Euler35CircularPrimes {
 		public static boolean isCircular(int n)
 		{
 			boolean result = true;
-			int length = (int)Math.log10((long)n) + 1;
+			int length = (int) Math.log10((long)n) + 1; //determines amount of digits in n
+			
+			//rotates digits of n to see if each is prime
 			for (int i = 0; i < length - 1; i++)
 			{
 				int temp = rotate(n, length);
