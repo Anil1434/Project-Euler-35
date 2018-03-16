@@ -36,48 +36,45 @@ public class Euler35CircularPrimes {
 		//Arithmetically rotates digits of integer n from back to front. 
 		public static int rotate(int n, int length)
 		{
-			int rightDigit = n % 10;
-			int temp = (n - rightDigit) / 10;
-			return (rightDigit * (int)(Math.pow(10, length - 1))) + temp;	
+			int rightDigit = n % 10;		//gets right digit
+			int temp = (n - rightDigit) / 10;	//gets all but right digit
+			return (rightDigit * (int)(Math.pow(10, length - 1))) + temp; 	//rotates digits
 		}
 		
 		//Determines if integer n is a circular prime.
 		public static boolean isCircular(int n)
 		{
-			boolean result = true;
+			boolean circular = true;
 			int length = (int) Math.log10((long)n) + 1; //determines amount of digits in n
 			
 			//rotates digits of n to see if each is prime
-			for (int i = 0; i < length - 1; i++)
+			int i = 0;
+			while (i < length - 1 && circular)
 			{
-				int temp = rotate(n, length);
-				n = temp;
-				if (isPrime(n) == false)
-				{
-					result = false;
-					break;
-				}
+				n = rotate(n, length);
+				circular = isPrime(n);
+				i++;
 			}
-			return result;
+			return circular;
 		}
 	
 		public static void main(String[] args) {
-		long start = System.currentTimeMillis();
-		//Iterates to one million and counts circular primes on the way
-		int n = 11;
-		int total = 4;
-		while (n < 1000000)
-		{
-			if (isCircular(n))
+			long start = System.currentTimeMillis();
+			//Iterates to one million and counts circular primes on the way
+			int n = 11;
+			int total = 4;
+			while (n < 1000000)
 			{
-				total++;
+				if (isCircular(n))
+				{
+					total++;
+				}
+				n = getNextPrime(n);
 			}
-			n = getNextPrime(n);
-		}
-		System.out.println("Total of circular primes below one million: " + total);
-		//For testing efficiency
-		long end = System.currentTimeMillis();
-		NumberFormat formatter = new DecimalFormat("#0.00000");
-		System.out.print("\nExecution time is " + formatter.format((end - start) / 1000d) + " seconds.");
+			System.out.println("Total of circular primes below one million: " + total);
+			//For testing efficiency
+			long end = System.currentTimeMillis();
+			NumberFormat formatter = new DecimalFormat("#0.00000");
+			System.out.print("\nExecution time is " + formatter.format((end - start) / 1000d) + " seconds.");
 	}
 }
